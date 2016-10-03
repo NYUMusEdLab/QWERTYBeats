@@ -29,7 +29,6 @@ function Hit(elementName,filePath){
 	var element = select(elementName);
 
 	var sample = new Tone.Player(filePath).toMaster();
-<<<<<<< HEAD
 	sample.setLoopPoints(0,1);
 	// sample.retrigger = true;
 	
@@ -38,8 +37,6 @@ function Hit(elementName,filePath){
 	// 		sample.start();
 	// 		// straight quarter notes
 	// 		}, "4n");
-=======
->>>>>>> 9198e1a539757cdc81ce6ec812d6851fb3709b82
 
 	this.play = function(keyCount) {
 
@@ -49,7 +46,7 @@ function Hit(elementName,filePath){
 
 		}
 		else {
-<<<<<<< HEAD
+
 			
 			// seq.start();
 			sample.loop = true;
@@ -61,7 +58,7 @@ function Hit(elementName,filePath){
 			// 	sample.start();
 			// }, "8n");
 			// loop.start();
-=======
+
 
 			loop = new Tone.Loop(function(time){
 				//triggered every eighth note. 
@@ -69,15 +66,14 @@ function Hit(elementName,filePath){
 				sample.start();
 			}, "8n");
 			loop.start();
->>>>>>> 9198e1a539757cdc81ce6ec812d6851fb3709b82
+
 		}
 
 	}
 	this.stop = function() {
 		element.style('background-color','#ccc');
-<<<<<<< HEAD
+
 		sample.stop();
-=======
->>>>>>> 9198e1a539757cdc81ce6ec812d6851fb3709b82
+
 	}
 }
