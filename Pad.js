@@ -42,7 +42,11 @@ function Pad(elementName) {
 		}
 		else {
 
+<<<<<<< HEAD
 			loop = Tone.Loop(function(time){
+=======
+			loop = new Tone.Loop(function(time){
+>>>>>>> 9198e1a539757cdc81ce6ec812d6851fb3709b82
 				//triggered every eighth note. 
 				console.log(time);
 				sample.start();

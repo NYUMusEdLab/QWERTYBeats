@@ -45,6 +45,7 @@ function setup() {
     // X = new Pad('#dropX');
     // C = new Pad('#dropC');
     // V = new Pad('#dropV');
+<<<<<<< HEAD
 
   }
   else {
@@ -52,6 +53,15 @@ function setup() {
     kit = new Kit('#drop1','#dropQ','#dropA','#dropZ','909');
   }
 
+=======
+
+  }
+  else {
+
+    kit = new Kit('#drop1','#dropQ','#dropA','#dropZ','909');
+  }
+
+>>>>>>> 9198e1a539757cdc81ce6ec812d6851fb3709b82
 	
 }
 
@@ -97,6 +107,7 @@ function keyTyped() {
 
 function keyReleased() {
 
+<<<<<<< HEAD
 
 
   if (keyCount < 5){
@@ -143,6 +154,13 @@ function keyReleased() {
   
 
   
+=======
+  keyCount = 0;
+  P1.stop();
+  Q.stop();
+  A.stop();
+  Z.stop();
+>>>>>>> 9198e1a539757cdc81ce6ec812d6851fb3709b82
 }
 
 
