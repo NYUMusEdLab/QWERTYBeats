@@ -1,6 +1,6 @@
 function Pad(elementName) {
 
-	var sample;
+	var sample, loop;
 
 	var element = select(elementName);
 
@@ -29,14 +29,31 @@ function Pad(elementName) {
 		// createP(file.name + " " + file.size);
 		// createP(file.data);
 		sample = new Tone.Player(file.data).toMaster();
-		sample.retrigger = true;
+		// sample.retrigger = true;
 		// console.log(file);
 	}
 
-	this.play = function() {
+	this.play = function(keyCount) {
 
-		sample.start();
-		element.style('background-color','#cfc');
+		if (keyCount === 1){
+			sample.start();
+			element.style('background-color','#cfc');
+
+		}
+		else {
+
+			loop = Tone.Loop(function(time){
+				//triggered every eighth note. 
+				console.log(time);
+				sample.start();
+			}, "8n");
+			loop.start();
+		}
+
+	}
+
+	this.stop = function() {
+		element.style('background-color','#ccc');
 	}
 	
 }
