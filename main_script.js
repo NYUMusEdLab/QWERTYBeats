@@ -52,6 +52,25 @@ function setup() {
     kit = new Kit('#drop1','#dropQ','#dropA','#dropZ','909');
   }
 
+=======
+<<<<<<< HEAD
+
+  }
+  else {
+
+    kit = new Kit('#drop1','#dropQ','#dropA','#dropZ','909');
+  }
+
+=======
+
+  }
+  else {
+
+    kit = new Kit('#drop1','#dropQ','#dropA','#dropZ','909');
+  }
+
+>>>>>>> 9198e1a539757cdc81ce6ec812d6851fb3709b82
+>>>>>>> 95d03ccba74a606ccc704fa189df9becec8dbdeb
 	
 }
 
