@@ -35,13 +35,14 @@ function Hit(elementName,filePath){
 				//triggered every eighth note. 
 				// console.log(time);
 				sample.start();
+				element.style('background-color','#cfc');
 			}, "8n")
 
 	this.play = function(int) {
 
 		// if (keyCount === 1){
 		// 	sample.start();
-		// 	element.style('background-color','#cfc');
+			
 
 		// }
 		// else {

@@ -6,6 +6,16 @@ var Q,W,E,R,A,S,D,F,Z,X,C,V;
 var keyCount = 0;
 var kitFlag = true;
 
+Array.prototype.contains = function(obj) {
+    var i = this.length;
+    while (i--) {
+        if (this[i] === obj) {
+            return true;
+        }
+    }
+    return false;
+}
+
 function toggle(button) 
 {
      switch(button.value)
@@ -71,8 +81,11 @@ function keyTyped() {
     E.play("4n");
   } else if (key === 'r' || key === 'R') {
     E.play("8n");
-  } 
-
+  } else if (key === 'd' || key === 'D') {
+    E.play("12n")
+  } else if (key === 'f' || key === 'F') {
+    E.play("16n")
+  }
   else if (key === 't' || key === 'T') {
     T.play("4n");
   } else if (key === 'y' || key === 'Y') {
@@ -109,7 +122,7 @@ function keyTyped() {
 function keyReleased() {
 
 
-  if (key === 'q' || key === 'Q' || key === 'w' || key === 'W') {
+  if (['q','Q','w','W'].contains(key)) {
     Q.stop();
   }
   // } else if (key === 'w' || key === 'W') {
@@ -119,7 +132,7 @@ function keyReleased() {
   //   R.play(keyCount);
   // } 
 
-  else if (key === 'e' || key === 'E' || key === 'r' || key === 'R') {
+  else if (['e','E','r','R','d','D','f','F'].contains(key)) {
     E.stop();
 } 
   //   else if (key === 's' || key === 'S') {
@@ -129,16 +142,16 @@ function keyReleased() {
   // } else if (key === 'f' || key === 'F') {
   //   F.play(keyCount);
   // } 
-  else if (key === 't' || key === 'T' || key === 'y' || key === 'Y') {
+  else if (['t','T','y','Y'].contains(key)) {
   T.stop();
 } 
-  else if (key === 'u' || key === 'U' || key === 'i' || key === 'I') {
+  else if (['u','U','i','I'].contains(key)) {
   U.stop();
 } 
 
-    else if (key === 'z' || key === 'Z') {
-    Z.stop();
-  } 
+    // else if (key === 'z' || key === 'Z') {
+    // Z.stop();
+  
   // else if (key === 'x' || key === 'X') {
   //   X.play(keyCount);
   // } else if (key === 'c' || key === 'C') {
