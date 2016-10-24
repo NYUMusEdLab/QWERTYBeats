@@ -4,7 +4,7 @@ var Q,W,E,R,A,S,D,F,Z,X,C,V;
 // Flags
 
 var keyCount = 0;
-var kitFlag = true;
+var kitFlag = false;
 
 Array.prototype.contains = function(obj) {
     var i = this.length;
@@ -16,15 +16,17 @@ Array.prototype.contains = function(obj) {
     return false;
 }
 
-function toggle(button) 
+function toggle(button, kitFlag) 
 {
      switch(button.value)
      {
           case "CUSTOM":
-               button.value = "909 KIT";
+               button.value = "BEATBOX";
+               // kitFlag = 1;
                break;
-          case "909 KIT":
+          case "BEATBOX":
                button.value = "CUSTOM";
+               // kitFlag = 0;
                break;
      }
 }
@@ -37,7 +39,7 @@ function setup() {
 	// Initialize all the Pads in the sampler
 
 
-  if (kitFlag == false) {
+  if (kitFlag == true) {
 
     Q = new Pad('#drop1');
 
@@ -60,11 +62,20 @@ function setup() {
     // V = new Pad('#dropV');
 
   }
+  // else if (kitFlag === 1) {
+
+  //   kit = new Kit('#drop1','#dropQ','#dropA','#dropZ','909');
+  // }
+
+  // else if (kitFlag === 2) {
+
+  //   kit = new Kit('#drop1','#dropQ','#dropA','#dropZ','box1');    
+  // }
   else {
 
-    kit = new Kit('#drop1','#dropQ','#dropA','#dropZ','909');
-  }
+    kit = new Kit('#drop1','#dropQ','#dropA','#dropZ','box1');
 
+  }
 	
 }
 
@@ -75,28 +86,40 @@ function keyTyped() {
     Q.play("4n");
   } else if (key === 'w' || key === 'W') {
     Q.play("8n");
-  } 
+  } else if (key === 'a' || key === 'A') {
+    Q.play("12n");
+  } else if (key === 's' || key === 'S') {
+    Q.play("16n")
+  }
 
   else if (key === 'e' || key === 'E') {
     E.play("4n");
   } else if (key === 'r' || key === 'R') {
     E.play("8n");
   } else if (key === 'd' || key === 'D') {
-    E.play("12n")
+    E.play("12n");
   } else if (key === 'f' || key === 'F') {
-    E.play("16n")
+    E.play("16n");
   }
   else if (key === 't' || key === 'T') {
     T.play("4n");
   } else if (key === 'y' || key === 'Y') {
     T.play("8n");
-  } 
+  } else if (key === 'g' || key === 'G') {
+    T.play("12n");
+  } else if (key === 'h' || key === 'H') {
+    T.play("16n");
+  }
 
   else if (key === 'u' || key === 'U') {
     U.play("4n");
   } else if (key === 'i' || key === 'I') {
     U.play("8n");
-  } 
+  } else if (key === 'j' || key === 'J') {
+    U.play("12n");
+  } else if (key === 'k' || key === 'K') {
+    U.play("16n");
+  }
 
   // 	else if (key === 'a' || key === 'A') {
   //   A.play(keyCount);
@@ -122,7 +145,7 @@ function keyTyped() {
 function keyReleased() {
 
 
-  if (['q','Q','w','W'].contains(key)) {
+  if (['q','Q','w','W','a','A','s','S'].contains(key)) {
     Q.stop();
   }
   // } else if (key === 'w' || key === 'W') {
@@ -142,10 +165,10 @@ function keyReleased() {
   // } else if (key === 'f' || key === 'F') {
   //   F.play(keyCount);
   // } 
-  else if (['t','T','y','Y'].contains(key)) {
+  else if (['t','T','y','Y','g','G','h','H'].contains(key)) {
   T.stop();
 } 
-  else if (['u','U','i','I'].contains(key)) {
+  else if (['u','U','i','I','j','J','k','K'].contains(key)) {
   U.stop();
 } 
 

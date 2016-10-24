@@ -2,18 +2,10 @@
 function Kit(elementName1,elementName2,elementName3,elementName4,kitName) {
 
 
-	Q = new Hit(elementName1,'audio/909/B.wav');
-    E = new Hit(elementName2,'audio/909/H.wav');
-    // W = new Pad('#dropW');
-    // E = new Pad('#dropE');
-    // R = new Pad('#dropR');
-
-    T = new Hit(elementName3,'audio/909/CLP.wav');
-    // S = new Pad('#dropS');
-    // D = new Pad('#dropD');
-    // F = new Pad('#dropF');
-
-    U = new Hit(elementName4,'audio/909/S.wav');
+	Q = new Hit(elementName1,'audio/' + kitName + '/1.wav');
+    E = new Hit(elementName2,'audio/' + kitName + '/2.wav');
+  	T = new Hit(elementName3,'audio/' + kitName + '/3.wav');
+    U = new Hit(elementName4,'audio/' + kitName + '/4.wav');
 
 
 
