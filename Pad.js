@@ -1,6 +1,10 @@
+// Class that accepts user generated pads. Allows drag/drop of samples.
+
+
 function Pad(elementName) {
 
-	var sample, loop;
+	var sample;
+	var padLoop;
 
 	var element = select(elementName);
 
@@ -26,34 +30,30 @@ function Pad(elementName) {
 
 	function gotFile(file) {
 
-		// createP(file.name + " " + file.size);
-		// createP(file.data);
 		sample = new Tone.Player(file.data).toMaster();
-		// sample.retrigger = true;
-		// console.log(file);
+		sample.retrigger = true;
+		// padLoop = new Tone.Loop(function(time){
+		// 		//triggered every eighth note. 
+		// 		sample.start();
+		// 		element.style('background-color','#cfc');
+		// 	}, "8n")
+		console.log(padLoop);
 	}
-
-	this.play = function(keyCount) {
-
-		if (keyCount === 1){
-			sample.start();
-			element.style('background-color','#cfc');
-
-		}
-		else {
-
-			loop = Tone.Loop(function(time){
+	this.play = function(int) {
+		padLoop = new Tone.Loop(function(time){
 				//triggered every eighth note. 
-				console.log(time);
 				sample.start();
-			}, "8n");
-			loop.start();
-		}
+				element.style('background-color','#cfc');
+			}, "8n")
+		// Takes int based on the key pressed and uses that as retrigger value
+		padloop.interval = int;
+		padloop.start();
 
 	}
-
 	this.stop = function() {
 		element.style('background-color','#ccc');
+		padloop.stop();
+		padLoop.stop();
 	}
 	
 }

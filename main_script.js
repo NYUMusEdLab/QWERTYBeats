@@ -3,8 +3,8 @@ var Q,W,E,R,A,S,D,F,Z,X,C,V;
 
 // Flags
 
-var keyCount = 0;
 var kitFlag = false;
+
 
 Array.prototype.contains = function(obj) {
     var i = this.length;
@@ -22,13 +22,17 @@ function toggle(button, kitFlag)
      {
           case "CUSTOM":
                button.value = "BEATBOX";
-               // kitFlag = 1;
+               kitFlag = false;
+               // console.log(kitFlag);
+
                break;
           case "BEATBOX":
                button.value = "CUSTOM";
-               // kitFlag = 0;
+               kitFlag = true;
+               // console.log(kitFlag);
                break;
      }
+     // console.log(button.value); //debug
 }
 
 function setup() {
@@ -41,38 +45,19 @@ function setup() {
 
   if (kitFlag == true) {
 
+    console.log('custom mode is on');
+
     Q = new Pad('#drop1');
 
     E = new Pad('#dropQ');
-    // W = new Pad('#dropW');
-    
-    // E = new Pad('#dropE');
-    // R = new Pad('#dropR');
 
     T = new Pad('#dropA');
-    // S = new Pad('#dropS');
-    
-    // D = new Pad('#dropD');
-    // F = new Pad('#dropF');
 
     U = new Pad('#dropZ');
-    // X = new Pad('#dropX');
-    
-    // C = new Pad('#dropC');
-    // V = new Pad('#dropV');
 
-  }
-  // else if (kitFlag === 1) {
+  } else {
 
-  //   kit = new Kit('#drop1','#dropQ','#dropA','#dropZ','909');
-  // }
-
-  // else if (kitFlag === 2) {
-
-  //   kit = new Kit('#drop1','#dropQ','#dropA','#dropZ','box1');    
-  // }
-  else {
-
+    console.log('beat mode is on');
     kit = new Kit('#drop1','#dropQ','#dropA','#dropZ','box1');
 
   }
@@ -82,116 +67,107 @@ function setup() {
 //QWERTY interface and keyboard input mapping
 function keyTyped() {
 
-  if (key === 'q' || key === 'Q') {
+// Sample1
+  if (key === '1') {
     Q.play("4n");
-  } else if (key === 'w' || key === 'W') {
+  } else if (key === '2') {
     Q.play("8n");
+  } else if (key === 'q' || key === 'Q') {
+    Q.play("8t");
+  } else if (key === 'w' || key === 'W') {
+    Q.play("16n");
   } else if (key === 'a' || key === 'A') {
-    Q.play("12n");
+    Q.play("6n");
   } else if (key === 's' || key === 'S') {
-    Q.play("16n")
+    Q.play("12n");
+  } else if (key === 'z' || key === 'Z') {
+    Q.play("16t");
+  } else if (key === 'x' || key === 'X') {
+    Q.play("24n");
   }
 
-  else if (key === 'e' || key === 'E') {
+// Sample2
+  else if (key === '3') {
     E.play("4n");
-  } else if (key === 'r' || key === 'R') {
+  } else if (key === '4') {
     E.play("8n");
-  } else if (key === 'd' || key === 'D') {
-    E.play("12n");
-  } else if (key === 'f' || key === 'F') {
+  } else if (key === 'e' || key === 'E') {
+    E.play("8t");
+  } else if (key === 'r' || key === 'R') {
     E.play("16n");
+  } else if (key === 'd' || key === 'D') {
+    E.play("6n");
+  } else if (key === 'f' || key === 'F') {
+    E.play("12n");
+  } else if (key === 'c' || key === 'C') {
+    E.play("16t");
+  } else if (key === 'v' || key === 'V') {
+    E.play("24n");
   }
-  else if (key === 't' || key === 'T') {
+
+// Sample3
+  else if (key === '5') {
     T.play("4n");
-  } else if (key === 'y' || key === 'Y') {
+  } else if (key === '6') {
     T.play("8n");
-  } else if (key === 'g' || key === 'G') {
-    T.play("12n");
-  } else if (key === 'h' || key === 'H') {
+  } else if (key === 't' || key === 'T') {
+    T.play("8t");
+  } else if (key === 'y' || key === 'Y') {
     T.play("16n");
+  } else if (key === 'g' || key === 'G') {
+    T.play("6n");
+  } else if (key === 'h' || key === 'H') {
+    T.play("12n");
+  } else if (key === 'b' || key === 'B') {
+    T.play("16t");
+  } else if (key === 'n' || key === 'N') {
+    T.play("24n");
   }
 
-  else if (key === 'u' || key === 'U') {
+// Sample4
+  else if (key === '7') {
     U.play("4n");
-  } else if (key === 'i' || key === 'I') {
+  } else if (key === '8') {
     U.play("8n");
-  } else if (key === 'j' || key === 'J') {
-    U.play("12n");
-  } else if (key === 'k' || key === 'K') {
+  } else if (key === 'u' || key === 'U') {
+    U.play("8t");
+  } else if (key === 'i' || key === 'I') {
     U.play("16n");
+  } else if (key === 'j' || key === 'J') {
+    U.play("6n");
+  } else if (key === 'k' || key === 'K') {
+    U.play("12n");
+  } else if (key === 'm' || key === 'M') {
+    U.play("16t");
+  } else if (key === ',') {
+    U.play("24n");
   }
 
-  // 	else if (key === 'a' || key === 'A') {
-  //   A.play(keyCount);
-  // } else if (key === 's' || key === 'S') {
-  //   S.play(keyCount);
-  // } else if (key === 'd' || key === 'D') {
-  //   D.play(keyCount);
-  // } else if (key === 'f' || key === 'F') {
-  //   F.play(keyCount);
-  // } 
-
-  // 	else if (key === 'z' || key === 'Z') {
-  //   Z.play(keyCount);
-  // } else if (key === 'x' || key === 'X') {
-  //   X.play(keyCount);
-  // } else if (key === 'c' || key === 'C') {
-  //   C.play(keyCount);
-  // } else if (key === 'v' || key === 'V') {
-  //   V.play(keyCount);
-  // }
 }
 
 function keyReleased() {
 
+// Stop playing the sample if key is released
 
-  if (['q','Q','w','W','a','A','s','S'].contains(key)) {
+  if (['1','2','q','Q','w','W','a','A','s','S','z','Z','x','X'].contains(key)) {
     Q.stop();
   }
-  // } else if (key === 'w' || key === 'W') {
-  //   W.play(keyCount);
-
-  // } else if (key === 'r' || key === 'R') {
-  //   R.play(keyCount);
-  // } 
-
-  else if (['e','E','r','R','d','D','f','F'].contains(key)) {
+  else if (['3','4','e','E','r','R','d','D','f','F','c','C','v','V'].contains(key)) {
     E.stop();
-} 
-  //   else if (key === 's' || key === 'S') {
-  //   S.play(keyCount);
-  // } else if (key === 'd' || key === 'D') {
-  //   D.play(keyCount);
-  // } else if (key === 'f' || key === 'F') {
-  //   F.play(keyCount);
-  // } 
-  else if (['t','T','y','Y','g','G','h','H'].contains(key)) {
-  T.stop();
-} 
-  else if (['u','U','i','I','j','J','k','K'].contains(key)) {
-  U.stop();
-} 
-
-    // else if (key === 'z' || key === 'Z') {
-    // Z.stop();
-  
-  // else if (key === 'x' || key === 'X') {
-  //   X.play(keyCount);
-  // } else if (key === 'c' || key === 'C') {
-  //   C.play(keyCount);
-  // } else if (key === 'v' || key === 'V') {
-  //   V.play(keyCount);
-  // }
+  } 
+  else if (['5','6','t','T','y','Y','g','G','h','H','b','B','n','N'].contains(key)) {
+    T.stop();
+  } 
+  else if (['7','8','u','U','i','I','j','J','k','K','m','M',','].contains(key)) {
+    U.stop();
+  } 
 
   keyCount = 0;
-  
-  
-
-  
+    
 }
-
 
 // Enable Audio
 
 Tone.Transport.start();
+Tone.Transport.bpm.value = 100;
 // Tone.Transport.loop = true; //Play audio
