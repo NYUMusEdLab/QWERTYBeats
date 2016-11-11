@@ -1,0 +1,48 @@
+		.dropzone {
+			padding: 35px;
+			
+			display: inline-block;
+			font-style: 10pt;
+			width: 60px; 
+			margin-left: 10px;
+			margin-top: 10px;
+
+			/*display: inline;*/
+		}
+
+		.circleBase {
+    		border-radius: 80%;
+
+		}
+
+		.highlight{
+
+			background-color: #cfc;
+			border-style: inset;
+			border-color: #efe;
+		}
+
+		.padQ{
+			background-color: #FF6347;
+			border-style: outset;
+			border-color: #FF6347;
+		}
+
+		.padE{
+			background-color: #9ACD32;
+			border-style: outset;
+			border-color: #9ACD32;
+		}
+
+		.padT{
+			background-color: #FFD700;	
+			border-style: outset;
+			border-color: #FFD700;
+
+		}
+
+		.padU{
+			background-color: #4169E1;
+			border-style: outset;
+			border-color: #4169E1;
+		}
