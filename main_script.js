@@ -2,7 +2,7 @@
 var Q,W,E,R,A,S,D,F,Z,X,C,V;
 
 // Flags
-
+var keyCount;
 var kitFlag = false;
 
 
@@ -44,6 +44,8 @@ function setup() {
 
 
   if (kitFlag == true) {
+// *** WORK IN PROGRESS ***
+// DISABLED by setting kitFlag to False by default
 
     console.log('custom mode is on');
 
@@ -67,6 +69,7 @@ function setup() {
 //QWERTY interface and keyboard input mapping
 function keyTyped() {
 
+  keyCount = 1;
 // Sample1
   if (key === '1') {
     Q.play("4n");

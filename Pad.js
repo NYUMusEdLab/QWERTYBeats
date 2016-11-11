@@ -1,5 +1,5 @@
 // Class that accepts user generated pads. Allows drag/drop of samples.
-
+//*** WORK IN PROGRESS ***
 
 function Pad(elementName) {
 
