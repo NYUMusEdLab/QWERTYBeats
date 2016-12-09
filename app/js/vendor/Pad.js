@@ -49,11 +49,11 @@ function Pad(elementName) {
 		padloop.interval = int;
 		padloop.start();
 
-	}
+	};
 	this.stop = function() {
 		element.style('background-color','#ccc');
 		padloop.stop();
 		padLoop.stop();
-	}
+	};
 	
 }

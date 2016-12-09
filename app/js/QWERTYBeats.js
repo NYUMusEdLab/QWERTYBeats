@@ -1,3 +1,5 @@
+var MusED = require('mused-app-core');
+
 
 var Q,W,E,R,A,S,D,F,Z,X,C,V;
 
@@ -16,7 +18,22 @@ Array.prototype.contains = function(obj) {
     return false;
 }
 
-function toggle(button, kitFlag) 
+
+var QWERTYBeats = function(options) {
+    this.initUI();
+};
+
+QWERTYBeats.prototype = {
+    initUI: function () {
+
+    // Enable Audio
+
+    Tone.Transport.start();
+    Tone.Transport.bpm.value = 100;
+// Tone.Transport.loop = true; //Play audio
+    },
+
+toggle: function(button, kitFlag)
 {
      switch(button.value)
      {
@@ -33,9 +50,9 @@ function toggle(button, kitFlag)
                break;
      }
      // console.log(button.value); //debug
-}
+},
 
-function setup() {
+setup: function() {
 	createCanvas(1,1);
 	background(1);
 
@@ -64,10 +81,10 @@ function setup() {
 
   }
 	
-}
+},
 
 //QWERTY interface and keyboard input mapping
-function keyTyped() {
+keyTyped: function () {
 
   keyCount = 1;
 // Sample1
@@ -146,9 +163,9 @@ function keyTyped() {
     U.play("24n");
   }
 
-}
+},
 
-function keyReleased() {
+keyReleased: function() {
 
 // Stop playing the sample if key is released
 
@@ -169,8 +186,8 @@ function keyReleased() {
     
 }
 
-// Enable Audio
+};
 
-Tone.Transport.start();
-Tone.Transport.bpm.value = 100;
-// Tone.Transport.loop = true; //Play audio
+MusED.Util.extend(QWERTYBeats, MusED.AppBase);
+
+module.exports = QWERTYBeats;
