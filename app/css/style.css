@@ -46,3 +46,16 @@
 			border-style: outset;
 			border-color: #4169E1;
 		}
+
+
+		/*.mused-button{*/
+			/*background-color: #ccc;*/
+		/*}*/
+
+		.keyboard{
+			height: 200px;
+		}
+
+		.triggered.mused-button{
+			background-color: #222222;
+		}

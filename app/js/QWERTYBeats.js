@@ -1,7 +1,51 @@
 var MusED = require('mused-app-core');
+var Keys = require('mused-buttons');
 
 
 var Q,W,E,R,A,S,D,F,Z,X,C,V;
+
+var template = [
+    [
+        {label:'1',code:'Digit1',eventType:'beatTrigger',eventData:['Q',"4n"]},
+        {label:'2',code:'Digit2',eventType:'beatTrigger',eventData:['Q',"8n"]},
+        {label:'3',code:'Digit3',eventType:'beatTrigger',eventData:['E',"4n"]},
+        {label:'4',code:'Digit4',eventType:'beatTrigger',eventData:['E',"8n"]},
+        {label:'5',code:'Digit5',eventType:'beatTrigger',eventData:['T',"4n"]},
+        {label:'6',code:'Digit6',eventType:'beatTrigger',eventData:['T',"8n"]},
+        {label:'7',code:'Digit7',eventType:'beatTrigger',eventData:['U',"4n"]},
+        {label:'8',code:'Digit8',eventType:'beatTrigger',eventData:['U',"8n"]}
+    ],
+    [
+        {label:'Q',code:'KeyQ',eventType:'beatTrigger',eventData:['Q',"8t"]},
+        {label:'W',code:'KeyW',eventType:'beatTrigger',eventData:['Q',"16n"]},
+        {label:'E',code:'KeyE',eventType:'beatTrigger',eventData:['E',"8t"]},
+        {label:'R',code:'KeyR',eventType:'beatTrigger',eventData:['E',"16n"]},
+        {label:'T',code:'KeyT',eventType:'beatTrigger',eventData:['T',"8t"]},
+        {label:'Y',code:'KeyY',eventType:'beatTrigger',eventData:['T',"16n"]},
+        {label:'U',code:'KeyU',eventType:'beatTrigger',eventData:['U',"8t"]},
+        {label:'I',code:'KeyI',eventType:'beatTrigger',eventData:['U',"16n"]}
+    ],
+    [
+        {label:'A',code:'KeyA',eventType:'beatTrigger',eventData:['Q',"6n"]},
+        {label:'S',code:'KeyS',eventType:'beatTrigger',eventData:['Q',"12n"]},
+        {label:'D',code:'KeyD',eventType:'beatTrigger',eventData:['E',"6n"]},
+        {label:'F',code:'KeyF',eventType:'beatTrigger',eventData:['E',"12n"]},
+        {label:'G',code:'KeyG',eventType:'beatTrigger',eventData:['T',"6n"]},
+        {label:'H',code:'KeyH',eventType:'beatTrigger',eventData:['T',"12n"]},
+        {label:'J',code:'KeyJ',eventType:'beatTrigger',eventData:['U',"6n"]},
+        {label:'K',code:'KeyK',eventType:'beatTrigger',eventData:['U',"12n"]}
+    ],
+    [
+        {label:'Z',code:'KeyZ',eventType:'beatTrigger',eventData:['Q',"16t"]},
+        {label:'X',code:'KeyX',eventType:'beatTrigger',eventData:['Q',"24n"]},
+        {label:'C',code:'KeyC',eventType:'beatTrigger',eventData:['E',"16t"]},
+        {label:'V',code:'KeyV',eventType:'beatTrigger',eventData:['E',"24n"]},
+        {label:'B',code:'KeyB',eventType:'beatTrigger',eventData:['T',"16t"]},
+        {label:'N',code:'KeyN',eventType:'beatTrigger',eventData:['T',"24n"]},
+        {label:'M',code:'KeyM',eventType:'beatTrigger',eventData:['U',"16t"]},
+        {label:',',code:'Key,',eventType:'beatTrigger',eventData:['U',"24n"]}
+    ]
+];
 
 // Flags
 var keyCount;
@@ -16,7 +60,7 @@ Array.prototype.contains = function(obj) {
         }
     }
     return false;
-}
+};
 
 
 var QWERTYBeats = function(options) {
@@ -25,167 +69,35 @@ var QWERTYBeats = function(options) {
 
 QWERTYBeats.prototype = {
     initUI: function () {
+        console.log('init');
+        // Enable Audio
 
-    // Enable Audio
+        Tone.Transport.start();
+        Tone.Transport.bpm.value = 140;
+        
+        //Initialize Kit
+        kit = new Kit('#drop1','#dropQ','#dropA','#dropZ','box1');
 
-    Tone.Transport.start();
-    Tone.Transport.bpm.value = 100;
-// Tone.Transport.loop = true; //Play audio
-    },
+    //    Keyboard setup and callback functions
+        var grid = new Keys(template);
+        console.log(template);
+        document.querySelector('.keyboard').appendChild(grid.domNode);
 
-toggle: function(button, kitFlag)
-{
-     switch(button.value)
-     {
-          case "CUSTOM":
-               button.value = "BEATBOX";
-               kitFlag = false;
-               // console.log(kitFlag);
-
-               break;
-          case "BEATBOX":
-               button.value = "CUSTOM";
-               kitFlag = true;
-               // console.log(kitFlag);
-               break;
-     }
-     // console.log(button.value); //debug
-},
-
-setup: function() {
-	createCanvas(1,1);
-	background(1);
+        grid.addListener('beatTrigger', function(eventdata) {
+            //Key Press Function
+            
+            // console.log('playBeat',eventdata);
+            kit[eventdata[0]].play(eventdata[1]);
+        }, function(eventdata){
+            //Key Release Function
+            
+            // console.log('stopBeat',eventdata);
+            kit[eventdata[0]].stop();
+        });
 
 
-	// Initialize all the Pads in the sampler
 
-
-  if (kitFlag == true) {
-// *** WORK IN PROGRESS ***
-// DISABLED by setting kitFlag to False by default
-
-    console.log('custom mode is on');
-
-    Q = new Pad('#drop1');
-
-    E = new Pad('#dropQ');
-
-    T = new Pad('#dropA');
-
-    U = new Pad('#dropZ');
-
-  } else {
-
-    console.log('beat mode is on');
-    kit = new Kit('#drop1','#dropQ','#dropA','#dropZ','box1');
-
-  }
-	
-},
-
-//QWERTY interface and keyboard input mapping
-keyTyped: function () {
-
-  keyCount = 1;
-// Sample1
-  if (key === '1') {
-    Q.play("4n");
-  } else if (key === '2') {
-    Q.play("8n");
-  } else if (key === 'q' || key === 'Q') {
-    Q.play("8t");
-  } else if (key === 'w' || key === 'W') {
-    Q.play("16n");
-  } else if (key === 'a' || key === 'A') {
-    Q.play("6n");
-  } else if (key === 's' || key === 'S') {
-    Q.play("12n");
-  } else if (key === 'z' || key === 'Z') {
-    Q.play("16t");
-  } else if (key === 'x' || key === 'X') {
-    Q.play("24n");
-  }
-
-// Sample2
-  else if (key === '3') {
-    E.play("4n");
-  } else if (key === '4') {
-    E.play("8n");
-  } else if (key === 'e' || key === 'E') {
-    E.play("8t");
-  } else if (key === 'r' || key === 'R') {
-    E.play("16n");
-  } else if (key === 'd' || key === 'D') {
-    E.play("6n");
-  } else if (key === 'f' || key === 'F') {
-    E.play("12n");
-  } else if (key === 'c' || key === 'C') {
-    E.play("16t");
-  } else if (key === 'v' || key === 'V') {
-    E.play("24n");
-  }
-
-// Sample3
-  else if (key === '5') {
-    T.play("4n");
-  } else if (key === '6') {
-    T.play("8n");
-  } else if (key === 't' || key === 'T') {
-    T.play("8t");
-  } else if (key === 'y' || key === 'Y') {
-    T.play("16n");
-  } else if (key === 'g' || key === 'G') {
-    T.play("6n");
-  } else if (key === 'h' || key === 'H') {
-    T.play("12n");
-  } else if (key === 'b' || key === 'B') {
-    T.play("16t");
-  } else if (key === 'n' || key === 'N') {
-    T.play("24n");
-  }
-
-// Sample4
-  else if (key === '7') {
-    U.play("4n");
-  } else if (key === '8') {
-    U.play("8n");
-  } else if (key === 'u' || key === 'U') {
-    U.play("8t");
-  } else if (key === 'i' || key === 'I') {
-    U.play("16n");
-  } else if (key === 'j' || key === 'J') {
-    U.play("6n");
-  } else if (key === 'k' || key === 'K') {
-    U.play("12n");
-  } else if (key === 'm' || key === 'M') {
-    U.play("16t");
-  } else if (key === ',') {
-    U.play("24n");
-  }
-
-},
-
-keyReleased: function() {
-
-// Stop playing the sample if key is released
-
-  if (['1','2','q','Q','w','W','a','A','s','S','z','Z','x','X'].contains(key)) {
-    Q.stop();
-  }
-  else if (['3','4','e','E','r','R','d','D','f','F','c','C','v','V'].contains(key)) {
-    E.stop();
-  } 
-  else if (['5','6','t','T','y','Y','g','G','h','H','b','B','n','N'].contains(key)) {
-    T.stop();
-  } 
-  else if (['7','8','u','U','i','I','j','J','k','K','m','M',','].contains(key)) {
-    U.stop();
-  } 
-
-  keyCount = 0;
-    
-}
-
+    }
 };
 
 MusED.Util.extend(QWERTYBeats, MusED.AppBase);

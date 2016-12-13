@@ -4,7 +4,8 @@
   "author": "NYU MusEDlab",
   "description": "",
   "dependencies": {
-    "mused-app-core": "git+ssh://git@github.com/NYUMusEdLab/mused-app-core.git#2b31a5f3936dacc61ee20abca75b73353784de53"
+    "mused-app-core": "git+ssh://git@github.com/NYUMusEdLab/mused-app-core.git#2b31a5f3936dacc61ee20abca75b73353784de53",
+    "mused-buttons": "git+ssh://git@github.com/NYUMusEdLab/mused-buttons.git#93e68dd0f759d8fd21fcdcf94fb821e18b4277d1"
   },
   "scripts": {
     "gulp"             : "gulp",

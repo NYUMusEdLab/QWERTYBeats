@@ -3,10 +3,10 @@ function Kit(elementName1,elementName2,elementName3,elementName4,kitName) {
 
  // Instantiates the family of sounds for a given kit.
  
-	Q = new Hit(elementName1,'audio/' + kitName + '/1.wav');
-    E = new Hit(elementName2,'audio/' + kitName + '/2.wav');
-  	T = new Hit(elementName3,'audio/' + kitName + '/3.wav');
-    U = new Hit(elementName4,'audio/' + kitName + '/4.wav');
+	this.Q = new Hit(elementName1,'audio/' + kitName + '/1.wav');
+    this.E = new Hit(elementName2,'audio/' + kitName + '/2.wav');
+  	this.T = new Hit(elementName3,'audio/' + kitName + '/3.wav');
+    this.U = new Hit(elementName4,'audio/' + kitName + '/4.wav');
 
 }
 
@@ -14,7 +14,7 @@ function Kit(elementName1,elementName2,elementName3,elementName4,kitName) {
 function Hit(elementName,filePath){
 
 	
-	var element = select(elementName);
+	var element = document.querySelector(elementName);
 
 	var sample = new Tone.Player(filePath).toMaster();
 	sample.retrigger = true;
@@ -22,8 +22,8 @@ function Hit(elementName,filePath){
 	var padLoop = new Tone.Loop(function(time){
 				//triggered every eighth note. 
 				sample.start();
-				element.style('background-color','#cfc');
-			}, "8n")
+				// element.style('background-color','#cfc');
+			}, "8n");
 
 	this.play = function(int) {
 
@@ -33,7 +33,7 @@ function Hit(elementName,filePath){
 
 	}
 	this.stop = function() {
-		element.style('background-color','#ccc');
+		// element.style('background-color','#ccc');
 		sample.stop();
 		padLoop.stop();
 	}
