@@ -17,11 +17,14 @@ function Hit(elementName,filePath){
 	var element = document.querySelector(elementName);
 
 	var sample = new Tone.Player(filePath).toMaster();
-	sample.retrigger = true;
+	// sample.retrigger = true;
 	
 	var padLoop = new Tone.Loop(function(time){
 				//triggered every eighth note. 
-				sample.start();
+				sample.volume.value = -60;
+				// sample.start();
+
+				sample.volume.rampTo(0,0.5);
 				// element.style('background-color','#cfc');
 			}, "8n");
 
@@ -34,7 +37,10 @@ function Hit(elementName,filePath){
 	}
 	this.stop = function() {
 		// element.style('background-color','#ccc');
-		sample.stop();
+
+
+		sample.volume.rampTo(-60,0.2);
+		sample.stop(0.2);
 		padLoop.stop();
 	}
 }

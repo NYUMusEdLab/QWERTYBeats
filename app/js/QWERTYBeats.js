@@ -76,7 +76,7 @@ QWERTYBeats.prototype = {
         Tone.Transport.bpm.value = 140;
         
         //Initialize Kit
-        kit = new Kit('#drop1','#dropQ','#dropA','#dropZ','box1');
+        kit = new Kit('#drop1','#dropQ','#dropA','#dropZ','arpeggiator');
 
     //    Keyboard setup and callback functions
         var grid = new Keys(template);
