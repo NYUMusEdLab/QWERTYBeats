@@ -47,23 +47,15 @@ var template = [
     ]
 ];
 
-// Flags
-var keyCount;
-var kitFlag = false;
-
-
-Array.prototype.contains = function(obj) {
-    var i = this.length;
-    while (i--) {
-        if (this[i] === obj) {
-            return true;
-        }
-    }
-    return false;
+var kitCollection = {
+    0:['909','909'],
+    1:['Beatbox','box1'],
+    2:['Arpeggiator','arpeggiator']
 };
 
 
 var QWERTYBeats = function(options) {
+    this.defaultKit = 'arpeggiator';
     this.initUI();
 };
 
@@ -76,7 +68,7 @@ QWERTYBeats.prototype = {
         Tone.Transport.bpm.value = 140;
         
         //Initialize Kit
-        kit = new Kit('#drop1','#dropQ','#dropA','#dropZ','arpeggiator');
+        kit = new Kit('#drop1','#dropQ','#dropA','#dropZ',this.defaultKit);
 
     //    Keyboard setup and callback functions
         var grid = new Keys(template);
@@ -95,8 +87,29 @@ QWERTYBeats.prototype = {
             kit[eventdata[0]].stop();
         });
 
+    //  Initialize Kit Selector
+        
+        var dropNode = document.createElement("button");
+        var label = document.createTextNode("Kit");
+        dropNode.className = "dropbtn";
+        dropNode.appendChild(label);
+        document.querySelector('.dropdown').appendChild(dropNode);
+        
+        var kitList = document.createElement("div");
+        kitList.className = "dropdown-content";
+        dropNode.appendChild(kitList);
+        // console.log(Object.keys(kitCollection));
+        for (i in Object.keys(kitCollection)){
+            var kitLabel = document.createTextNode(kitCollection[i][0]);
+            kitList.appendChild(kitLabel);
 
+        }
 
+    },
+
+    choosekit: function(kitName){
+
+        kit = new Kit('#drop1','#dropQ','#dropA','#dropZ',kitName);
     }
 };
 
